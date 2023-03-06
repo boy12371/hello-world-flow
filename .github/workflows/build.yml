@@ -1,7 +1,6 @@
 name: hello-world-flow
-
-on: [push, pull_request]
-
+#on: [push, pull_request]
+on: [workflow_dispatch]
 jobs:
   build: 
     name: ${{ matrix.config.name }}
@@ -52,4 +51,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Packages
-          path: ${{ github.workspace }}\dist\${{ matrix.config.os }}
+          path: ${{ github.workspace }}\build\${{ matrix.config.config }}
