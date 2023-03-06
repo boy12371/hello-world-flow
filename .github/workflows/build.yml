@@ -14,25 +14,29 @@ jobs:
             os: windows-2019,
             config: Release,
             args: -G "Visual Studio 16 2019" -A Win32,
-          }
+            build_paths: build/Release,
+            }
           - {
             name: "Windows/Static/X64/Release",
             os: windows-2019,
             config: Release,
             args: -G "Visual Studio 16 2019" -A x64,
-          }
+            build_paths: build/Release,
+            }
           - {
             name: "Ubuntu/18.04/Static/X64/Release",
             os: ubuntu-18.04,
             config: Release,
             cmake_extra_args: "-DCMAKE_C_COMPILER=/usr/bin/gcc-10 -DCMAKE_CXX_COMPILER=/usr/bin/g++-10",
-          }
+            build_paths: .,
+            }
           - {
             name: "MacOSX/Static/X64/Release",
             os: macos-10.15,
             config: Release,
             args: "",
-          }
+            build_paths: .,
+            }
     steps:
       - uses: actions/checkout@v2
       - name: Create Work Dir
@@ -50,5 +54,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: Packages
-          path: ${{ github.workspace }}\build\${{ matrix.config.config }}
+          name: ${{ matrix.config.os }}.zip
+          path: ${{ github.workspace }}/${{ matrix.config.build_paths }}
