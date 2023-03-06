@@ -14,7 +14,7 @@ jobs:
             config: Release,
             args: -G "Visual Studio 16 2019" -A Win32,
             upload_name: Win32,
-            build_paths: build/Release,
+            build_paths: build/Release/hello-world-flow.exe,
             }
           - {
             name: "Windows/Static/X64/Release",
@@ -22,7 +22,7 @@ jobs:
             config: Release,
             args: -G "Visual Studio 16 2019" -A x64,
             upload_name: Amd64,
-            build_paths: build/Release,
+            build_paths: build/Release/hello-world-flow.exe,
             }
           - {
             name: "Ubuntu/18.04/Static/X64/Release",
@@ -30,7 +30,7 @@ jobs:
             config: Release,
             cmake_extra_args: "-DCMAKE_C_COMPILER=/usr/bin/gcc-10 -DCMAKE_CXX_COMPILER=/usr/bin/g++-10",
             upload_name: Ubuntu,
-            build_paths: "**",
+            build_paths: build/hello-world-flow,
             }
           - {
             name: "MacOSX/Static/X64/Release",
@@ -38,7 +38,7 @@ jobs:
             config: Release,
             args: "",
             upload_name: MacOSX,
-            build_paths: "**",
+            build_paths: build/hello-world-flow,
             }
     steps:
       - uses: actions/checkout@v2
@@ -57,5 +57,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ matrix.config.upload_name }}.zip
+          name: ${{ matrix.config.upload_name }}
           path: ${{ github.workspace }}/${{ matrix.config.build_paths }}
