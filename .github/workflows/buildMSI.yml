@@ -1,0 +1,24 @@
+﻿name: Build HelloWorld (.MSI)
+on: [workflow_dispatch]
+jobs:
+  build_HelloWorld_msi:
+    runs-on: windows-latest
+    name: Build HelloWorld.msi
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Build AIP
+        uses: caphyon/advinst-github-action@v1.0
+        with:
+          advinst-enable-automation: 'true'
+          aip-path: ${{ github.workspace }}\HelloWorld.aip
+          aip-build-name: DefaultBuild
+          aip-package-name: HelloWorld.msi
+          aip-output-dir:  ${{ github.workspace }}
+          aip-commands: |
+            SetVersion 0.1.1
+      - name: Publish msi artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: HelloWorld.msi.zip
+          path: ${{ github.workspace }}\HelloWorld.msi
