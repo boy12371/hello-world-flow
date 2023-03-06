@@ -48,3 +48,8 @@ jobs:
       - name: Test
         working-directory: ./build
         run: ctest -j -C ${{ matrix.config.config }}
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Packages
+          path: ${{ github.workspace }}\dist\${{ matrix.config.os }}
