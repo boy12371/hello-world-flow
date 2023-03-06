@@ -30,7 +30,7 @@ jobs:
             config: Release,
             cmake_extra_args: "-DCMAKE_C_COMPILER=/usr/bin/gcc-10 -DCMAKE_CXX_COMPILER=/usr/bin/g++-10",
             upload_name: Ubuntu,
-            build_paths: **,
+            build_paths: "**",
             }
           - {
             name: "MacOSX/Static/X64/Release",
@@ -38,7 +38,7 @@ jobs:
             config: Release,
             args: "",
             upload_name: MacOSX,
-            build_paths: **,
+            build_paths: "**",
             }
     steps:
       - uses: actions/checkout@v2
