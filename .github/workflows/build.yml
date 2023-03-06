@@ -14,6 +14,7 @@ jobs:
             os: windows-2019,
             config: Release,
             args: -G "Visual Studio 16 2019" -A Win32,
+            upload_name: Win32,
             build_paths: build/Release,
             }
           - {
@@ -21,6 +22,7 @@ jobs:
             os: windows-2019,
             config: Release,
             args: -G "Visual Studio 16 2019" -A x64,
+            upload_name: Amd64,
             build_paths: build/Release,
             }
           - {
@@ -28,6 +30,7 @@ jobs:
             os: ubuntu-18.04,
             config: Release,
             cmake_extra_args: "-DCMAKE_C_COMPILER=/usr/bin/gcc-10 -DCMAKE_CXX_COMPILER=/usr/bin/g++-10",
+            upload_name: Ubuntu,
             build_paths: **,
             }
           - {
@@ -35,6 +38,7 @@ jobs:
             os: macos-10.15,
             config: Release,
             args: "",
+            upload_name: MacOSX,
             build_paths: **,
             }
     steps:
@@ -54,5 +58,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ matrix.config.os }}.zip
+          name: ${{ matrix.config.upload_name }}.zip
           path: ${{ github.workspace }}/${{ matrix.config.build_paths }}
