@@ -1,5 +1,4 @@
 name: hello-world-flow
-#on: [push, pull_request]
 on: [workflow_dispatch]
 jobs:
   build: 
