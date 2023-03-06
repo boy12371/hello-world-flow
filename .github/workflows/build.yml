@@ -1,5 +1,6 @@
 name: hello-world-flow
-on: [push, pull_request]
+# on: [push, pull_request]
+on: [workflow_dispatch]
 jobs:
   build: 
     name: ${{ matrix.config.name }}
@@ -14,7 +15,7 @@ jobs:
             config: Release,
             args: -G "Visual Studio 16 2019" -A Win32,
             upload_name: Win32,
-            build_paths: build/Release/hello-world-flow.exe,
+            build_paths: build/Release/${{name}}.exe,
             }
           - {
             name: "Windows/Static/X64/Release",
@@ -22,7 +23,7 @@ jobs:
             config: Release,
             args: -G "Visual Studio 16 2019" -A x64,
             upload_name: Amd64,
-            build_paths: build/Release/hello-world-flow.exe,
+            build_paths: build/Release/${{name}}.exe,
             }
           - {
             name: "Ubuntu/18.04/Static/X64/Release",
@@ -30,7 +31,7 @@ jobs:
             config: Release,
             cmake_extra_args: "-DCMAKE_C_COMPILER=/usr/bin/gcc-10 -DCMAKE_CXX_COMPILER=/usr/bin/g++-10",
             upload_name: Ubuntu,
-            build_paths: build/hello-world-flow,
+            build_paths: build/${{name}},
             }
           - {
             name: "MacOSX/Static/X64/Release",
@@ -38,7 +39,7 @@ jobs:
             config: Release,
             args: "",
             upload_name: MacOSX,
-            build_paths: build/hello-world-flow,
+            build_paths: build/${{name}},
             }
     steps:
       - uses: actions/checkout@v2
