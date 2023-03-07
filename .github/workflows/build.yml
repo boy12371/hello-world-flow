@@ -57,5 +57,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ matrix.config.upload_name }}-${{ runner.os }}-${{ runner.arch }}-${{ github.run_number }}
+          name: ${{ matrix.config.upload_name }}-${{ runner.os }}-${{ runner.arch }}-${{ github.run_id }}-${{ github.run_number }}
           path: ${{ github.workspace }}/${{ matrix.config.build_paths }}
