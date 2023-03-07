@@ -13,7 +13,7 @@ jobs:
             os: windows-2019,
             config: Release,
             args: -G "Visual Studio 16 2019" -A Win32,
-            upload_name: Win32,
+            arch: X86,
             build_paths: "build/Release/${{ github.workflow }}.exe",
             }
           - {
@@ -21,7 +21,7 @@ jobs:
             os: windows-2019,
             config: Release,
             args: -G "Visual Studio 16 2019" -A x64,
-            upload_name: Win64,
+            arch: X64,
             build_paths: "build/Release/${{ github.workflow }}.exe",
             }
           - {
@@ -29,7 +29,7 @@ jobs:
             os: ubuntu-18.04,
             config: Release,
             cmake_extra_args: "-DCMAKE_C_COMPILER=/usr/bin/gcc-10 -DCMAKE_CXX_COMPILER=/usr/bin/g++-10",
-            upload_name: Ubuntu,
+            arch: X64,
             build_paths: "build/${{ github.workflow }}",
             }
           - {
@@ -37,7 +37,7 @@ jobs:
             os: macos-10.15,
             config: Release,
             args: "",
-            upload_name: MacOSX,
+            arch: X64,
             build_paths: "build/${{ github.workflow }}",
             }
     steps:
@@ -57,5 +57,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ matrix.config.upload_name }}-${{ runner.os }}-${{ runner.arch }}-${{ github.run_id }}-${{ github.run_number }}
+          name: ${{ runner.os }}-${{ matrix.config.arch }}-${{ github.repository_id }}
           path: ${{ github.workspace }}/${{ matrix.config.build_paths }}
