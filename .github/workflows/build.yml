@@ -41,9 +41,7 @@ jobs:
             build_paths: "build/${{ github.workflow }}",
             }
     steps:
-      - uses: actions/checkout@v2
-        with:
-          node-version: 16.x
+      - uses: actions/checkout@v3
       - name: Create Work Dir
         run: mkdir build
       - name: Configure
@@ -57,9 +55,8 @@ jobs:
         working-directory: ./build
         run: ctest -j -C ${{ matrix.config.config }}
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
-          node-version: 16.x
           name: ${{ runner.os }}-${{ matrix.config.arch }}-${{ github.ref_name }}-${{ github.repository_id }}-${{ github.run_number }}
           path: ${{ github.workspace }}/${{ matrix.config.build_paths }}
 
@@ -68,13 +65,10 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Download project
-        uses: actions/checkout@v2
-        with:
-          node-version: 16.x
+        uses: actions/checkout@v3
       - name: Download EXE
         uses: actions/download-artifact@v3
         with:
-          node-version: 16.x
           name: Windows-X64-${{ github.ref_name }}-${{ github.repository_id }}-${{ github.run_number }}
           path: ${{ github.workspace }}/${{ matrix.config.build_paths }}
       - name: Build MSI Installer
@@ -88,9 +82,8 @@ jobs:
           aip-commands: |
             SetVersion 0.1.1
       - name: Upload MSI Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
-          node-version: 16.x
           name: HelloWorld.msi
           path: ${{ github.workspace }}\HelloWorld.msi
       - name: Build EXE Installer
@@ -104,8 +97,7 @@ jobs:
           aip-commands: |
             SetVersion 0.1.1
       - name: Upload EXE Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
-          node-version: 16.x
           name: HelloWorld.exe
           path: ${{ github.workspace }}\HelloWorld.exe
