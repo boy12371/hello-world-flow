@@ -69,7 +69,7 @@ jobs:
       - name: Download EXE
         uses: actions/download-artifact@v3
         with:
-          name: ${{ github.workflow }}
+          name: Windows-X64-${{ github.ref_name }}-${{ github.repository_id }}-${{ github.run_number }}
           path: ${{ github.workspace }}/${{ matrix.config.build_paths }}
       - name: Build MSI Installer
         uses: caphyon/advinst-github-action@v1.0
