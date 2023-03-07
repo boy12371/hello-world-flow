@@ -75,7 +75,7 @@ jobs:
         uses: caphyon/advinst-github-action@v1.0
         with:
           advinst-enable-automation: 'false'
-          aip-path: ${{ github.workspace }}\HelloWorld-msi.aip
+          aip-path: ${{ github.workspace }}\HelloWorld_msi.aip
           aip-build-name: 'MSI'
           aip-package-name: HelloWorld.msi
           aip-output-dir:  ${{ github.workspace }}
@@ -90,7 +90,7 @@ jobs:
         uses: caphyon/advinst-github-action@v1.0
         with:
           advinst-enable-automation: 'false'
-          aip-path: ${{ github.workspace }}\HelloWorld-exe.aip
+          aip-path: ${{ github.workspace }}\HelloWorld_exe.aip
           aip-build-name: 'EXE'
           aip-package-name: HelloWorld.exe
           aip-output-dir:  ${{ github.workspace }}
