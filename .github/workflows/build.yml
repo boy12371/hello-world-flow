@@ -21,7 +21,7 @@ jobs:
             os: windows-2019,
             config: Release,
             args: -G "Visual Studio 16 2019" -A x64,
-            upload_name: Amd64,
+            upload_name: Win64,
             build_paths: "build/Release/${{ github.workflow }}.exe",
             }
           - {
@@ -57,5 +57,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ matrix.config.upload_name }}
+          name: ${{ runner.os }}-${{ runner.arch }}-${{ github.run_attempt }}
           path: ${{ github.workspace }}/${{ matrix.config.build_paths }}
