@@ -7,11 +7,6 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - name: Download EXE
-        uses: actions/download-artifact@v3
-        with:
-          name: WindowsRawExe
-          path: /
       - name: Build AIP
         uses: caphyon/advinst-github-action@v1.0
         with:
@@ -25,5 +20,5 @@ jobs:
       - name: Publish msi artifact
         uses: actions/upload-artifact@v2
         with:
-          name: HelloWorld.msi.zip
+          name: HelloWorld.msi
           path: ${{ github.workspace }}\HelloWorld.msi

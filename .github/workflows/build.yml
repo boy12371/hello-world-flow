@@ -1,7 +1,7 @@
 name: hello-world-flow
 on: [push, pull_request]
 jobs:
-  build: 
+  Generate-Bins: 
     name: ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
     strategy:
@@ -59,3 +59,30 @@ jobs:
         with:
           name: ${{ runner.os }}-${{ matrix.config.arch }}-${{ github.ref_name }}-${{ github.repository_id }}-${{ github.run_number }}
           path: ${{ github.workspace }}/${{ matrix.config.build_paths }}
+
+  Package-WindowsInstallers:
+    needs: [Generate-Bins]
+    runs-on: windows-latest
+    steps:
+      - name: Download project
+        uses: actions/checkout@v2
+      - name: Download EXE
+        uses: actions/download-artifact@v3
+        with:
+          name: WindowsRawExe
+          path: ${{ github.workspace }}/${{ matrix.config.build_paths }}
+      - name: Build MSI Installer
+        uses: caphyon/advinst-github-action@v1.0
+        with:
+          advinst-enable-automation: 'true'
+          aip-path: ${{ github.workspace }}\HelloWorld.aip
+          aip-build-name: DefaultBuild
+          aip-package-name: HelloWorld.msi
+          aip-output-dir:  ${{ github.workspace }}
+          aip-commands: |
+            SetVersion 0.1.1
+      - name: Publish msi artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: HelloWorld.msi
+          path: ${{ github.workspace }}\HelloWorld.msi
