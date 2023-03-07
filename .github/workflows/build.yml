@@ -14,7 +14,7 @@ jobs:
             config: Release,
             args: -G "Visual Studio 16 2019" -A Win32,
             upload_name: Win32,
-            build_paths: build/Release/${{GITHUB_WORKFLOW}}.exe,
+            build_paths: build/Release/$GITHUB_WORKFLOW.exe,
             }
           - {
             name: "Windows/Static/X64/Release",
@@ -22,7 +22,7 @@ jobs:
             config: Release,
             args: -G "Visual Studio 16 2019" -A x64,
             upload_name: Amd64,
-            build_paths: build/Release/${{GITHUB_WORKFLOW}}.exe,
+            build_paths: build/Release/$GITHUB_WORKFLOW.exe,
             }
           - {
             name: "Ubuntu/18.04/Static/X64/Release",
@@ -30,7 +30,7 @@ jobs:
             config: Release,
             cmake_extra_args: "-DCMAKE_C_COMPILER=/usr/bin/gcc-10 -DCMAKE_CXX_COMPILER=/usr/bin/g++-10",
             upload_name: Ubuntu,
-            build_paths: build/${{GITHUB_WORKFLOW}},
+            build_paths: build/$GITHUB_WORKFLOW,
             }
           - {
             name: "MacOSX/Static/X64/Release",
@@ -38,7 +38,7 @@ jobs:
             config: Release,
             args: "",
             upload_name: MacOSX,
-            build_paths: build/${{GITHUB_WORKFLOW}},
+            build_paths: build/$GITHUB_WORKFLOW,
             }
     steps:
       - uses: actions/checkout@v2
