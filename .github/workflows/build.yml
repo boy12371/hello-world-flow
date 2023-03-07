@@ -76,9 +76,9 @@ jobs:
         with:
           advinst-enable-automation: 'false'
           aip-path: ${{ github.workspace }}\HelloWorld.aip
+          aip-build-name: 'MSI'
           aip-package-name: HelloWorld.msi
           aip-output-dir:  ${{ github.workspace }}
-          aip-build-name: 'MSI'
           aip-commands: |
             SetVersion 0.1.1
       - name: Upload MSI Artifact
@@ -91,9 +91,9 @@ jobs:
         with:
           advinst-enable-automation: 'false'
           aip-path: ${{ github.workspace }}\HelloWorld.aip
+          aip-build-name: 'EXE'
           aip-package-name: HelloWorld.exe
           aip-output-dir:  ${{ github.workspace }}
-          aip-build-name: 'EXE'
           aip-commands: |
             SetVersion 0.1.1
       - name: Upload EXE Artifact
