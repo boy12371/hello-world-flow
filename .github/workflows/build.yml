@@ -42,8 +42,6 @@ jobs:
             }
     steps:
       - uses: actions/checkout@v2
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2
         with:
           node-version: 16.x
       - name: Create Work Dir
@@ -61,6 +59,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
+          node-version: 16.x
           name: ${{ runner.os }}-${{ matrix.config.arch }}-${{ github.ref_name }}-${{ github.repository_id }}-${{ github.run_number }}
           path: ${{ github.workspace }}/${{ matrix.config.build_paths }}
 
@@ -70,9 +69,12 @@ jobs:
     steps:
       - name: Download project
         uses: actions/checkout@v2
+        with:
+          node-version: 16.x
       - name: Download EXE
         uses: actions/download-artifact@v3
         with:
+          node-version: 16.x
           name: Windows-X64-${{ github.ref_name }}-${{ github.repository_id }}-${{ github.run_number }}
           path: ${{ github.workspace }}/${{ matrix.config.build_paths }}
       - name: Build MSI Installer
@@ -88,6 +90,7 @@ jobs:
       - name: Upload MSI Artifact
         uses: actions/upload-artifact@v2
         with:
+          node-version: 16.x
           name: HelloWorld.msi
           path: ${{ github.workspace }}\HelloWorld.msi
       - name: Build EXE Installer
@@ -103,5 +106,6 @@ jobs:
       - name: Upload EXE Artifact
         uses: actions/upload-artifact@v2
         with:
+          node-version: 16.x
           name: HelloWorld.exe
           path: ${{ github.workspace }}\HelloWorld.exe
