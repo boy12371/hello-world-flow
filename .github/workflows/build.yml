@@ -76,7 +76,6 @@ jobs:
         with:
           advinst-enable-automation: 'false'
           aip-path: ${{ github.workspace }}\HelloWorld.aip
-          aip-build-name: DefaultBuild
           aip-package-name: HelloWorld.msi
           aip-output-dir:  ${{ github.workspace }}
           aip-build-name: 'MSI'
