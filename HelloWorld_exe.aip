@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<DOCUMENT Type="Advanced Installer" CreateVersion="11.0" version="11.0" Modules="professional" RootPath="." Language="zh" Id="{58A9AF47-7EC3-4300-81B2-71CB66DAE408}">
+<DOCUMENT Type="Advanced Installer" CreateVersion="11.0" version="11.0" Modules="simple" RootPath="." Language="zh" Id="{58A9AF47-7EC3-4300-81B2-71CB66DAE408}">
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
     <ROW Property="AI_FINDEXE_TITLE" Value="选择 [|ProductName] 安装包" ValueLocId="AI.Property.FindExeTitle"/>
