@@ -1,5 +1,5 @@
 name: hello-world-flow
-on: [push, pull_request]
+on: [workflow_dispatch]
 jobs:
   Generate-Bins: 
     name: ${{ matrix.config.name }}
